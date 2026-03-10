@@ -13,15 +13,13 @@
 
   <style>
     :root{
-      /* ألوان ونمط الاسم */
       --name-color:#6A5843;
       --shadow:0 1px 3px rgba(0,0,0,.45);
 
-      /* الموضع الجديد (نازل كثير) */
-      --preview-bottom:14px;   /* حسب طلبك */
-      --export-bottom:17px;    /* مكافئ بصريًا */
+      /* طلبك: الاسم قريب جداً من الخط السفلي */
+      --preview-bottom:18px;   /* كان 55 ثم 14 — الآن 18px مضبوط 👌 */
+      --export-bottom:22px;    /* مكافئ بصريًا للتصدير */
 
-      /* أحجام الخط */
       --preview-size:16px;
       --export-size:20px;
       --font-weight:600;
@@ -36,8 +34,8 @@
     .app{max-width:780px; margin:0 auto; display:grid; gap:16px}
 
     h2{
-      margin:0; text-align:center; font-size:22px;
-      font-weight:600; color:#0f172a;
+      text-align:center; font-size:22px;
+      font-weight:600; margin:0; color:#0f172a;
     }
 
     .panel{
@@ -61,7 +59,9 @@
       font-weight:700; cursor:pointer;
     }
 
-    .preview-area{display:flex; justify-content:center}
+    .preview-area{
+      display:flex; justify-content:center;
+    }
 
     .card{
       width:500px; aspect-ratio:1/1; position:relative;
@@ -70,19 +70,18 @@
       border:1px solid #e6e0d6;
     }
 
-    /* الاسم فوق الخط (بعد التنزيل الكبير) */
+    /* Preview (الموقع) */
     .name-place{
       position:absolute; left:0; right:0;
       bottom:var(--preview-bottom);
-      text-align:center;
-      color:var(--name-color);
+      text-align:center; color:var(--name-color);
       font-size:var(--preview-size);
       font-weight:var(--font-weight);
       text-shadow:var(--shadow);
       display:none; z-index:10;
     }
 
-    /* Export */
+    /* Export PNG */
     .export-stage{
       position:fixed; left:-99999px; top:-99999px;
       width:600px; height:600px;
@@ -95,13 +94,13 @@
     .export-name{
       position:absolute; left:0; right:0;
       bottom:var(--export-bottom);
-      text-align:center;
-      color:var(--name-color);
+      text-align:center; color:var(--name-color);
       font-size:var(--export-size);
       font-weight:var(--font-weight);
       text-shadow:var(--shadow);
       display:none; z-index:10;
     }
+
   </style>
 </head>
 
@@ -123,17 +122,16 @@
       </div>
     </div>
 
-    <!-- Export Zone -->
     <div class="export-stage">
       <div class="export-card">
         <div id="nameExport" class="export-name"></div>
       </div>
     </div>
-
   </div>
 
+
 <script>
-  const input = document.getElementById('fullName');
+  const input    = document.getElementById('fullName');
   const namePrev = document.getElementById('namePreview');
   const nameExp  = document.getElementById('nameExport');
 
@@ -154,7 +152,7 @@
     const v = (input.value || '').trim();
     if(!v){ alert("اكتب الاسم أولاً"); return; }
 
-    const node = document.querySelector('.export-card');
+    const node   = document.querySelector('.export-card');
     const canvas = await html2canvas(node,{scale:2,useCORS:true});
 
     const a=document.createElement("a");
