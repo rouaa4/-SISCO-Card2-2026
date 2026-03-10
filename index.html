@@ -16,9 +16,10 @@
       --name-color:#6A5843;
       --shadow:0 1px 3px rgba(0,0,0,.45);
 
-      /* طلبك: 23px */
-      --preview-bottom:23px;   /* المعاينة */
-      --export-bottom:28px;    /* التصدير (مكافئ بصرياً) */
+      /* طلبك: Preview = 26px */
+      --preview-bottom:26px;
+      /* Export = 31px مكافئ بصرياً */
+      --export-bottom:31px;
 
       --preview-size:16px;
       --export-size:20px;
@@ -26,121 +27,78 @@
     }
 
     body{
-      margin:0; padding:20px;
-      background:#f8f3e9;
+      margin:0; padding:20px; background:#f8f3e9;
       font-family:"Noto Kufi Arabic", sans-serif;
       color:#222;
     }
 
-    .app{
-      max-width:780px;
-      margin:0 auto;
-      display:grid;
-      gap:16px;
-    }
+    .app{max-width:780px; margin:0 auto; display:grid; gap:16px}
 
     h2{
-      text-align:center;
-      font-size:22px;
-      font-weight:600;
-      color:#0f172a;
-      margin:0 0 10px;
+      margin:0; text-align:center; font-size:22px;
+      font-weight:600; color:#0f172a;
     }
 
     .panel{
-      background:#fff;
-      border-radius:12px;
-      padding:16px;
-      box-shadow:0 4px 10px rgba(0,0,0,.08);
+      background:#fff; border-radius:12px;
+      padding:16px; box-shadow:0 4px 10px rgba(0,0,0,.08);
     }
 
-    .row{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      align-items:center;
-    }
+    .row{display:flex; gap:10px; flex-wrap:wrap; align-items:center}
 
     input{
-      flex:1;
-      padding:12px 14px;
-      border-radius:10px;
-      border:2px solid #0c4a6e55;
-      font-size:18px;
-      font-family:"Noto Kufi Arabic";
+      flex:1; padding:12px 14px;
+      border-radius:10px; border:2px solid #0c4a6e55;
+      font-size:18px; font-family:"Noto Kufi Arabic";
     }
 
-    input:focus{
-      outline:none;
-      border-color:#0c4a6e;
-      box-shadow:0 0 0 3px #0c4a6e33;
-    }
+    input:focus{outline:none; border-color:#0c4a6e; box-shadow:0 0 0 3px #0c4a6e33}
 
     .btn{
-      background:#0c4a6e;
-      color:#fff;
-      padding:12px 16px;
-      border-radius:10px;
-      font-weight:700;
-      border:none;
-      cursor:pointer;
+      background:#0c4a6e; color:#fff; border:0;
+      padding:12px 16px; border-radius:10px;
+      font-weight:700; cursor:pointer;
     }
 
-    .preview-area{
-      display:flex;
-      justify-content:center;
-    }
+    .preview-area{display:flex; justify-content:center}
 
     .card{
-      width:500px;
-      aspect-ratio:1/1;
-      position:relative;
-      border-radius:14px;
-      overflow:hidden;
+      width:500px; aspect-ratio:1/1; position:relative;
+      border-radius:14px; overflow:hidden;
       background:#eee url('./assets/eid-card2-base.png') center/cover no-repeat;
       border:1px solid #e6e0d6;
     }
 
     /* Preview (الموقع) */
     .name-place{
-      position:absolute;
-      left:0; right:0;
+      position:absolute; left:0; right:0;
       bottom:var(--preview-bottom);
-      text-align:center;
-      color:var(--name-color);
+      text-align:center; color:var(--name-color);
       font-size:var(--preview-size);
       font-weight:var(--font-weight);
       text-shadow:var(--shadow);
-      display:none;
-      z-index:10;
+      display:none; z-index:10;
     }
 
     /* EXPORT PNG */
     .export-stage{
-      position:fixed;
-      left:-99999px; top:-99999px;
-      width:600px;
-      height:600px;
+      position:fixed; left:-99999px; top:-99999px;
+      width:600px; height:600px;
     }
 
     .export-card{
-      width:600px;
-      height:600px;
-      position:relative;
+      width:600px; height:600px; position:relative;
       background:#eee url('./assets/eid-card2-base.png') center/cover no-repeat;
     }
 
     .export-name{
-      position:absolute;
-      left:0; right:0;
+      position:absolute; left:0; right:0;
       bottom:var(--export-bottom);
-      text-align:center;
-      color:var(--name-color);
+      text-align:center; color:var(--name-color);
       font-size:var(--export-size);
       font-weight:var(--font-weight);
       text-shadow:var(--shadow);
-      display:none;
-      z-index:10;
+      display:none; z-index:10;
     }
   </style>
 </head>
@@ -185,7 +143,7 @@
 
       nameExp.style.display="block";
       nameExp.textContent=v;
-    }else{
+    } else {
       namePrev.style.display="none";
       nameExp.style.display="none";
     }
