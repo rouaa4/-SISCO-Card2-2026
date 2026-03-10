@@ -13,17 +13,18 @@
 
   <style>
     :root{
+      /* اللون والشدو (أقوى الآن) */
       --name-color:#6A5843;
-      --shadow:0 1px 3px rgba(0,0,0,.45);
+      --shadow:0 2px 4px rgba(0,0,0,.55);
 
-      /* طلبك: تنزيــل الاسم إلى 33px */
-      --preview-bottom:33px;
-      /* مكافئ للتصدير */
-      --export-bottom:40px;
+      /* الموضع الذي اتفقنا عليه سابقاً */
+      --preview-bottom:33px;   /* الموقع على الصفحة */
+      --export-bottom:40px;    /* مكافئ بصرياً في التصدير */
 
-      --preview-size:16px;
-      --export-size:20px;
-      --font-weight:600;
+      /* أحجام الخط (أكبر شوي) */
+      --preview-size:18px;     /* كان 16px */
+      --export-size:22px;      /* كان 20px */
+      --font-weight:600;       /* وزن الخط */
     }
 
     body{
@@ -62,34 +63,37 @@
       width:500px; aspect-ratio:1/1; position:relative;
       border-radius:14px; overflow:hidden;
       background:#eee url('./assets/eid-card2-base.png') center/cover no-repeat;
-      border:1px solid #e6e0d6;
+      border:1px solid #e6e0د6;
     }
 
+    /* Preview (الموقع) */
     .name-place{
       position:absolute; left:0; right:0;
       bottom:var(--preview-bottom);
       text-align:center; color:var(--name-color);
-      font-size:var(--preview-size); font-weight:var(--font-weight);
-      text-shadow:var(--shadow); display:none; z-index:10;
+      font-size:var(--preview-size);
+      font-weight:var(--font-weight);
+      text-shadow:var(--shadow);
+      display:none; z-index:10;
     }
 
-    /* Export zone */
+    /* EXPORT PNG */
     .export-stage{
       position:fixed; left:-99999px; top:-99999px;
       width:600px; height:600px;
     }
-
     .export-card{
       width:600px; height:600px; position:relative;
       background:#eee url('./assets/eid-card2-base.png') center/cover no-repeat;
     }
-
     .export-name{
       position:absolute; left:0; right:0;
       bottom:var(--export-bottom);
       text-align:center; color:var(--name-color);
-      font-size:var(--export-size); font-weight:var(--font-weight);
-      text-shadow:var(--shadow); display:none; z-index:10;
+      font-size:var(--export-size);
+      font-weight:var(--font-weight);
+      text-shadow:var(--shadow);
+      display:none; z-index:10;
     }
   </style>
 </head>
@@ -97,7 +101,6 @@
 <body>
 
   <div class="app">
-
     <h2>👇 Type your name below / 👇 اكتب اسمك هنا</h2>
 
     <div class="panel">
@@ -121,7 +124,6 @@
     </div>
   </div>
 
-
 <script>
   const input    = document.getElementById('fullName');
   const namePrev = document.getElementById('namePreview');
@@ -130,29 +132,19 @@
   function updateName(){
     const v = (input.value || '').trim();
     if(v){
-      namePrev.style.display="block"; namePrev.textContent=v;
-      nameExp .style.display="block"; nameExp.textContent=v;
+      namePrev.style.display='block'; namePrev.textContent=v;
+      nameExp .style.display='block'; nameExp .textContent=v;
     } else {
-      namePrev.style.display="none";
-      nameExp.style.display="none";
+      namePrev.style.display='none';
+      nameExp .style.display='none';
     }
   }
-
   input.addEventListener('input', updateName);
 
   document.getElementById('downloadBtn').addEventListener('click', async ()=>{
     const v = (input.value || '').trim();
-    if(!v){ alert("اكتب الاسم أولاً"); return; }
-
-    const node = document.querySelector('.export-card');
+    if(!v){ alert('اكتب الاسم أولاً'); return; }
+    const node   = document.querySelector('.export-card');
     const canvas = await html2canvas(node,{scale:2,useCORS:true});
-
-    const a=document.createElement("a");
-    a.download=v+".png";
-    a.href=canvas.toDataURL("image/png");
-    a.click();
-  });
-</script>
-
-</body>
-</html>
+    const a=document.createElement('a');
+    a.download = v + '.png';
