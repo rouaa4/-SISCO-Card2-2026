@@ -6,24 +6,24 @@
   <title>SISCO Eid Mubarak 2026 — Design 3</title>
 
   <!-- Load Noto Kufi Arabic correctly -->
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@300;400;500;600&display=swap" rel="stylesheet">
+  https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@300;400;500;600&display=swap
 
   <!-- Load html2canvas correctly -->
-  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+  https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js</script>
 
   <style>
     :root{
-      /* اللون والشدو (أقوى) */
+      /* اللون + شدو أقوى */
       --name-color:#6A5843;
       --shadow:0 2px 4px rgba(0,0,0,.55);
 
-      /* موضع الاسم: نازل كثير فوق الإطار مباشرة */
-      --preview-bottom:40px;   /* على الصفحة */
-      --export-bottom:48px;    /* في التصدير 600×600 (≈ 40 × 1.2) */
+      /* الموضع الجديد */
+      --preview-bottom:35px;   /* على الصفحة (500px) */
+      --export-bottom:42px;    /* في التصدير (600px) ≈ 35×1.2 */
 
-      /* أحجام الخط */
-      --preview-size:18px;
-      --export-size:22px;
+      /* حجم الخط (أصغر شوي كما طلبتِ سابقاً) */
+      --preview-size:17px;     /* كان 18px */
+      --export-size:21px;      /* كان 22px */
       --font-weight:600;
     }
 
@@ -58,7 +58,7 @@
       border:1px solid #e6e0d6;
     }
 
-    /* الاسم في المعاينة (الموقع) */
+    /* الاسم في المعاينة */
     .name-place{
       position:absolute; left:0; right:0;
       bottom:var(--preview-bottom);
@@ -69,10 +69,8 @@
       display:none; z-index:10;
     }
 
-    /* منطقة التصدير 600×600 */
-    .export-stage{
-      position:fixed; left:-99999px; top:-99999px; width:600px; height:600px;
-    }
+    /* التصدير 600×600 */
+    .export-stage{position:fixed; left:-99999px; top:-99999px; width:600px; height:600px}
     .export-card{
       position:relative; width:600px; height:600px;
       background:#eee url('./assets/eid-card2-base.png') center/cover no-repeat;
