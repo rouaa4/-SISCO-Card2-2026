@@ -5,11 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>SISCO Eid Mubarak 2026 — Design 3</title>
 
-  <!-- Load Noto Kufi Arabic correctly -->
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <!-- Noto Kufi Arabic -->
+  https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@300;400;500;600&display=swap
 
-  <!-- Load html2canvas correctly -->
-  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+  <!-- html2canvas -->
+  https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js</script>
 
   <style>
     :root{
@@ -17,58 +17,88 @@
       --name-color:#6A5843;
       --shadow:0 1px 3px rgba(0,0,0,.45);
 
-      /* الموضع: «فوق الخط السفلي مباشرة» */
-      --preview-bottom:55px;   /* (تم تنزيله 9px من 64 → 55) */
-      --export-bottom:66px;    /* مكافئ بصريًا في صورة 600px */
+      /* تم التنزيل بشكل كبير */
+      --preview-bottom:25px;   /* كان 55px → نزل كثير */
+      --export-bottom:32px;    /* مكافئ للـ 25px في التصدير */
 
-      /* أحجام الخط */
       --preview-size:16px;
-      --export-size:20px;      /* ≈ 16 × 1.2 */
-      --font-weight:600;       /* غامق خفيف */
+      --export-size:20px;
+      --font-weight:600;
     }
 
-    html,body{height:100%}
     body{
-      margin:0; padding:20px; background:#f8f3e9;
-      font-family:"Noto Kufi Arabic", system-ui, -apple-system, Segoe UI, Arial, sans-serif;
+      margin:0; padding:20px;
+      background:#f8f3e9;
+      font-family:"Noto Kufi Arabic";
       color:#222;
     }
+
     .app{max-width:780px; margin:0 auto; display:grid; gap:16px}
-    h2{margin:0; text-align:center; font-size:22px; font-weight:600; color:#0f172a}
+
+    h2{text-align:center; font-size:22px; font-weight:600; margin:0; color:#0f172a}
+
     .panel{background:#fff; border-radius:12px; padding:16px; box-shadow:0 4px 10px rgba(0,0,0,.08)}
+
     .row{display:flex; gap:10px; flex-wrap:wrap; align-items:center}
-    input{flex:1; min-width:260px; padding:12px 14px; border-radius:10px; border:2px solid #0c4a6e55; font-size:18px}
+
+    input{
+      flex:1; min-width:260px;
+      padding:12px 14px;
+      border-radius:10px;
+      border:2px solid #0c4a6e55;
+      font-size:18px;
+      font-family:"Noto Kufi Arabic";
+    }
+
     input:focus{outline:none; border-color:#0c4a6e; box-shadow:0 0 0 3px #0c4a6e33}
-    .btn{background:#0c4a6e; color:#fff; border:0; padding:12px 16px; border-radius:10px; font-weight:700; cursor:pointer}
+
+    .btn{
+      background:#0c4a6e; color:#fff; border:0;
+      padding:12px 16px; border-radius:10px;
+      font-weight:700; cursor:pointer;
+    }
 
     .preview-area{display:flex; justify-content:center}
+
     .card{
-      width:500px; aspect-ratio:1/1; position:relative; border-radius:14px; overflow:hidden;
-      background:#eee url('./assets/eid-card2-base.png') center/cover no-repeat; border:1px solid #e6e0d6;
+      width:500px; aspect-ratio:1/1;
+      position:relative; border-radius:14px; overflow:hidden;
+      background:#eee url('./assets/eid-card2-base.png') center/cover no-repeat;
+      border:1px solid #e6e0d6;
     }
 
-    /* الاسم في المعاينة (فوق الخط السفلي) */
+    /* الاسم فوق الخط (بعد التنزيل) */
     .name-place{
-      position:absolute; left:0; right:0; bottom:var(--preview-bottom);
-      text-align:center; color:var(--name-color);
-      font:var(--font-weight) var(--preview-size) "Noto Kufi Arabic", sans-serif;
-      text-shadow:var(--shadow); display:none; z-index:10;
+      position:absolute; left:0; right:0;
+      bottom:var(--preview-bottom);
+      text-align:center;
+      color:var(--name-color);
+      font-size:var(--preview-size);
+      font-weight:var(--font-weight);
+      text-shadow:var(--shadow);
+      display:none; z-index:10;
     }
 
-    /* منطقة التصدير 600×600 */
+    /* Export */
     .export-stage{position:fixed; left:-99999px; top:-99999px; width:600px; height:600px}
     .export-card{
       position:relative; width:600px; height:600px;
       background:#eee url('./assets/eid-card2-base.png') center/cover no-repeat;
     }
+
     .export-name{
-      position:absolute; left:0; right:0; bottom:var(--export-bottom);
-      text-align:center; color:var(--name-color);
-      font:var(--font-weight) var(--export-size) "Noto Kufi Arabic", sans-serif;
-      text-shadow:var(--shadow); display:none; z-index:10;
+      position:absolute; left:0; right:0;
+      bottom:var(--export-bottom);
+      text-align:center;
+      color:var(--name-color);
+      font-size:var(--export-size);
+      font-weight:var(--font-weight);
+      text-shadow:var(--shadow);
+      display:none; z-index:10;
     }
   </style>
 </head>
+
 <body>
   <div class="app">
     <h2>👇 Type your name below / 👇 اكتب اسمك هنا — SISCO Eid Mubarak 2026</h2>
@@ -87,7 +117,7 @@
     </div>
 
     <!-- Export -->
-    <div class="export-stage" aria-hidden="true">
+    <div class="export-stage">
       <div class="export-card">
         <div id="nameExport" class="export-name"></div>
       </div>
@@ -100,27 +130,34 @@
   const nameExp  = document.getElementById('nameExport');
 
   function updateName(){
-    const v = (input.value || '').trim();
+    const v = input.value.trim();
     if(v){
-      namePrev.style.display = 'block'; namePrev.textContent = v;
-      nameExp .style.display = 'block'; nameExp .textContent = v;
-    } else {
-      namePrev.style.display = 'none';
-      nameExp .style.display = 'none';
+      namePrev.style.display="block";
+      namePrev.textContent=v;
+
+      nameExp.style.display="block";
+      nameExp.textContent=v;
+
+    }else{
+      namePrev.style.display="none";
+      nameExp.style.display="none";
     }
   }
+
   input.addEventListener('input', updateName);
 
-  document.getElementById('downloadBtn').addEventListener('click', async () => {
-    const v = (input.value || '').trim();
-    if(!v){ alert('اكتب الاسم أولاً'); return; }
-    const node   = document.querySelector('.export-card');
-    const canvas = await html2canvas(node, { scale:2, useCORS:true });
-    const a      = document.createElement('a');
-    a.download   = v + '.png';
-    a.href       = canvas.toDataURL('image/png');
+  document.getElementById('downloadBtn').addEventListener('click', async ()=>{
+    const v = input.value.trim();
+    if(!v){ alert("اكتب الاسم أولاً"); return; }
+
+    const node = document.querySelector('.export-card');
+    const canvas = await html2canvas(node,{scale:2,useCORS:true});
+    const a=document.createElement("a");
+    a.download=v+".png";
+    a.href=canvas.toDataURL("image/png");
     a.click();
   });
 </script>
+
 </body>
 </html>
