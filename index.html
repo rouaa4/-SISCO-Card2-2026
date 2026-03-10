@@ -16,9 +16,9 @@
       --name-color:#6A5843;
       --shadow:0 1px 3px rgba(0,0,0,.45);
 
-      /* طلبك: الاسم قريب جداً من الخط السفلي */
-      --preview-bottom:18px;   /* كان 55 ثم 14 — الآن 18px مضبوط 👌 */
-      --export-bottom:22px;    /* مكافئ بصريًا للتصدير */
+      /* طلبك: الاسم يكون نازل أكثر بكثير */
+      --preview-bottom:18px;   /* المعاينة */
+      --export-bottom:22px;    /* التصدير (مكافئ بصريًا) */
 
       --preview-size:16px;
       --export-size:20px;
@@ -27,86 +27,74 @@
 
     body{
       margin:0; padding:20px; background:#f8f3e9;
-      font-family:"Noto Kufi Arabic", sans-serif;
-      color:#222;
+      font-family:"Noto Kufi Arabic", sans-serif; color:#222;
     }
 
     .app{max-width:780px; margin:0 auto; display:grid; gap:16px}
 
-    h2{
-      text-align:center; font-size:22px;
-      font-weight:600; margin:0; color:#0f172a;
-    }
+    h2{text-align:center; font-size:22px; font-weight:600; margin:0; color:#0f172a}
 
     .panel{
-      background:#fff; border-radius:12px;
-      padding:16px; box-shadow:0 4px 10px rgba(0,0,0,.08);
+      background:#fff; border-radius:12px; padding:16px;
+      box-shadow:0 4px 10px rgba(0,0,0,.08)
     }
 
-    .row{display:flex; gap:10px; flex-wrap:wrap; align-items:center}
+    .row{display:flex; gap:10px; flex-wrap:wrap}
 
     input{
-      flex:1; min-width:260px; padding:12px 14px;
-      border-radius:10px; border:2px solid #0c4a6e55;
-      font-size:18px; font-family:"Noto Kufi Arabic";
+      flex:1; padding:12px 14px; border-radius:10px;
+      border:2px solid #0c4a6e55; font-size:18px;
+      font-family:"Noto Kufi Arabic"
     }
 
     input:focus{outline:none; border-color:#0c4a6e; box-shadow:0 0 0 3px #0c4a6e33}
 
     .btn{
-      background:#0c4a6e; color:#fff; border:0;
-      padding:12px 16px; border-radius:10px;
-      font-weight:700; cursor:pointer;
+      background:#0c4a6e; color:#fff; padding:12px 16px;
+      border-radius:10px; font-weight:700; cursor:pointer; border:none;
     }
 
-    .preview-area{
-      display:flex; justify-content:center;
-    }
+    .preview-area{display:flex; justify-content:center}
 
     .card{
       width:500px; aspect-ratio:1/1; position:relative;
       border-radius:14px; overflow:hidden;
-      background:#eee url('./assets/eid-card2-base.png') center/cover no-repeat;
-      border:1px solid #e6e0d6;
+      background:url('./assets/eid-card2-base.png') center/cover no-repeat;
+      border:1px solid #e6e0d6
     }
 
-    /* Preview (الموقع) */
     .name-place{
       position:absolute; left:0; right:0;
       bottom:var(--preview-bottom);
       text-align:center; color:var(--name-color);
-      font-size:var(--preview-size);
-      font-weight:var(--font-weight);
-      text-shadow:var(--shadow);
-      display:none; z-index:10;
+      font-size:var(--preview-size); font-weight:var(--font-weight);
+      text-shadow:var(--shadow); display:none; z-index:10;
     }
 
-    /* Export PNG */
     .export-stage{
       position:fixed; left:-99999px; top:-99999px;
       width:600px; height:600px;
     }
+
     .export-card{
-      position:relative; width:600px; height:600px;
-      background:#eee url('./assets/eid-card2-base.png') center/cover no-repeat;
+      width:600px; height:600px; position:relative;
+      background:url('./assets/eid-card2-base.png') center/cover no-repeat;
     }
 
     .export-name{
       position:absolute; left:0; right:0;
       bottom:var(--export-bottom);
       text-align:center; color:var(--name-color);
-      font-size:var(--export-size);
-      font-weight:var(--font-weight);
-      text-shadow:var(--shadow);
-      display:none; z-index:10;
+      font-size:var(--export-size); font-weight:var(--font-weight);
+      text-shadow:var(--shadow); display:none; z-index:10;
     }
-
   </style>
 </head>
 
 <body>
 
   <div class="app">
+
     <h2>👇 Type your name below / 👇 اكتب اسمك هنا</h2>
 
     <div class="panel">
@@ -127,8 +115,8 @@
         <div id="nameExport" class="export-name"></div>
       </div>
     </div>
-  </div>
 
+  </div>
 
 <script>
   const input    = document.getElementById('fullName');
@@ -140,7 +128,7 @@
     if(v){
       namePrev.style.display="block"; namePrev.textContent=v;
       nameExp .style.display="block"; nameExp .textContent=v;
-    }else{
+    } else {
       namePrev.style.display="none";
       nameExp .style.display="none";
     }
@@ -152,7 +140,7 @@
     const v = (input.value || '').trim();
     if(!v){ alert("اكتب الاسم أولاً"); return; }
 
-    const node   = document.querySelector('.export-card');
+    const node = document.querySelector('.export-card');
     const canvas = await html2canvas(node,{scale:2,useCORS:true});
 
     const a=document.createElement("a");
